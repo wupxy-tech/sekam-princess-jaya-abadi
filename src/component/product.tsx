@@ -143,26 +143,28 @@ const Product = forwardRef<HTMLDivElement, ProductProps>(({ dict, lang }, ref) =
             </div>
 
             {/* Mobile grid */}
-            {/* <div ref={gridMobileRef} className="mx-auto mt-8 grid grid-cols-1 gap-4 px-4 sm:grid-cols-2 md:hidden">
+            <div ref={gridMobileRef} className="mx-auto mt-8 grid grid-cols-1 gap-4 px-4 sm:grid-cols-2 md:hidden">
                 {items.map((product, idx) => (
                     <Card key={idx} idx={idx} product={product} />
                 ))}
-            </div> */}
+            </div>
 
             {/* Desktop grid: kiri besar, kanan 2 kecil */}
-            <div
-                ref={gridMdUpRef}
-                className="mx-auto hidden grid-cols-2 gap-5 px-4 sm:px-6 md:mt-10 md:grid"
-                style={{
-                    display: 'grid',
-                    gridTemplateColumns: '2fr 1fr',
-                    gridTemplateRows: 'repeat(2, minmax(220px, auto))',
-                    gap: '20px',
-                }}
-            >
-                {items[0] && <Card idx={0} product={items[0]} tall />}
-                {items[1] && <Card idx={1} product={items[1]} />}
-                {items[2] && <Card idx={2} product={items[2]} />}
+            <div className='hidden md:block'>
+                <div
+                    // ref={gridMdUpRef}
+                    className="mx-auto hidden grid-cols-2 gap-5 px-4 sm:px-6 md:mt-10 md:grid"
+                    style={{
+                        display: 'grid',
+                        gridTemplateColumns: '2fr 1fr',
+                        gridTemplateRows: 'repeat(2, minmax(220px, auto))',
+                        gap: '20px',
+                    }}
+                >
+                    {items[0] && <Card idx={0} product={items[0]} tall />}
+                    {items[1] && <Card idx={1} product={items[1]} />}
+                    {items[2] && <Card idx={2} product={items[2]} />}
+                </div>
             </div>
 
             {/* CTA bottom */}
