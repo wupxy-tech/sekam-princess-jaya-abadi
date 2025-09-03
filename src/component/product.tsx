@@ -143,11 +143,11 @@ const Product = forwardRef<HTMLDivElement, ProductProps>(({ dict, lang }, ref) =
             </div>
 
             {/* Mobile grid */}
-            <div ref={gridMobileRef} className="mx-auto mt-8 grid grid-cols-1 gap-4 px-4 sm:grid-cols-2 md:hidden">
+            {/* <div ref={gridMobileRef} className="mx-auto mt-8 grid grid-cols-1 gap-4 px-4 sm:grid-cols-2 md:hidden">
                 {items.map((product, idx) => (
                     <Card key={idx} idx={idx} product={product} />
                 ))}
-            </div>
+            </div> */}
 
             {/* Desktop grid: kiri besar, kanan 2 kecil */}
             <div
