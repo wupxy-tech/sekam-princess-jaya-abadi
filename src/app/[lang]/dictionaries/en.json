@@ -1,0 +1,175 @@
+{
+  "navbar": {
+    "home": "Home",
+    "productsLink": "Products",
+    "missionLink": "Our Mission",
+    "aboutUsLink": "About Us",
+    "qualityLink": "Quality",
+    "uspLink": "Why Us",
+    "exportDestinationLink": "Export Destinations",
+    "newsLink": "News",
+    "locationLink": "Location",
+    "articles": "Articles",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Premium Rice Husk\nfor Global Markets",
+    "subtitle": "PT. Princess Jaya Abadi: Mitra tepercaya untuk pasokan sekam padi berkualitas dan berkelanjutan.",
+    "cta": "Explore Our Rice Husk"
+  },
+  "mission": {
+    "label": "Our Purpose",
+    "heading": "Leading the Global Rice Husk Supply",
+    "quote": "Menjadi pemasok sekam padi kelas dunia yang berkomitmen pada keberlanjutan, kepuasan pelanggan, dan pemberdayaan komunitas.",
+    "points": [
+      "Menyediakan sekam padi premium yang konsisten dan memenuhi standar internasional.",
+      "Mendorong praktik pengadaan bahan baku pertanian yang etis dan berkelanjutan.",
+      "Memastikan distribusi global yang efisien dan andal.",
+      "Berkontribusi pada pertumbuhan ekonomi komunitas petani lokal."
+    ]
+  },
+  "about": {
+    "label": "Why Choose Us?",
+    "heading": "The Princess Jaya Abadi Advantage",
+    "description": "PT. Princess Jaya Abadi berfokus pada ekspor sekam padi dan turunannya. Komitmen kami pada kualitas, keberlanjutan, dan kepuasan pelanggan membuat kami menonjol di pasar global. Setiap batch melalui proses sortasi dan pengemasan yang rapi untuk performa optimal—dengan analisis kandungan yang terverifikasi dan prosedur ekspor yang terpercaya.",
+    "features": [
+      {
+        "title": "Sustainable Sourcing",
+        "description": "Kami bermitra dengan jaringan penggilingan padi dan petani lokal, memastikan dampak lingkungan minimal dan nilai tambah bagi komunitas."
+      },
+      {
+        "title": "Consistent Quality",
+        "description": "Kontrol mutu ketat: kadar air terkontrol, ukuran seragam, kontaminan rendah, serta traceability jelas hingga asal sawah/penggilingan."
+      },
+      {
+        "title": "Eco-Friendly Processing",
+        "description": "Proses penanganan dan pengeringan ramah lingkungan, memanfaatkan praktik energi terbarukan dan kemasan yang dapat didaur ulang."
+      },
+      {
+        "title": "Trusted Export Payment Flow",
+        "description": "Skema pembayaran transparan dan aman: LC (Letter of Credit), TT (Telegraphic Transfer), dan Escrow. Dokumen & sertifikat disiapkan sebelum pengapalan untuk kepatuhan regulasi internasional."
+      },
+      {
+        "title": "Verified and Transparent Dealings",
+        "description": "Setiap transaksi dilengkapi laporan uji (moisture, impurities), dokumen ekspor, dan pelacakan purna jual. Komunikasi terbuka untuk kemitraan jangka panjang."
+      }
+    ]
+  },
+  "product": {
+    "label": "Our Rice Husk Products",
+    "heading": "Sekam Padi & Turunannya untuk Beragam Kebutuhan",
+    "description": "Kami menyediakan beragam produk berbasis sekam padi—dari bahan baku pertanian, media tanam, konstruksi ramah lingkungan, hingga energi biomassa—dengan kualitas stabil dan siap ekspor.",
+    "cta": "View All Products",
+    "items": [
+      {
+        "title": "Sekam Padi Mentah",
+        "description": "Sekam padi kering hasil sortasi, cocok untuk pakan/alas ternak, mulsa, media campuran tanam, dan bahan baku industri."
+      },
+      {
+        "title": "Arang Sekam (Rice Husk Charcoal)",
+        "description": "Sekam yang dikarbonisasi untuk media tanam aeratif dan penyerap bau; ringan, poros, dan membantu sirkulasi udara pada perakaran."
+      },
+      {
+        "title": "Abu Sekam (Rice Husk Ash)",
+        "description": "Hasil pembakaran arang sekam dengan kandungan silika tinggi; dimanfaatkan untuk campuran bahan bangunan, stabilisasi tanah, dan pemurnian."
+      },
+      {
+        "title": "Pelet Sekam (Rice Husk Pellets)",
+        "description": "Pelet bioenergi dengan densitas tinggi untuk pembakaran lebih efisien pada boiler, burner, dan aplikasi energi terbarukan."
+      },
+      {
+        "title": "Mulsa Sekam",
+        "description": "Sekam terpilah untuk mulsa lahan: menjaga kelembapan tanah, menekan gulma, dan meningkatkan kesehatan ekosistem mikro."
+      }
+    ]
+  },
+  "quality": {
+    "label": "Our Commitment to Quality",
+    "heading": "Kualitas Terjaga di Setiap Kiriman",
+    "intro": "Di PT. Princess Jaya Abadi, kualitas adalah prioritas. Mulai dari pemilihan sumber, pengeringan, sortasi, hingga pengemasan—semua mengikuti SOP yang ketat untuk memastikan konsistensi.",
+    "points": [
+      "Bahan baku dari penggilingan padi tepercaya.",
+      "Kontrol kadar air dan kotoran/impurities.",
+      "Sortasi ukuran untuk konsistensi aplikasi.",
+      "Dokumentasi mutu dan ketertelusuran (traceability)."
+    ],
+    "conclusion": "Dengan dedikasi pada mutu dan keberlanjutan, Anda mendapatkan produk yang efisien, serbaguna, dan bertanggung jawab terhadap lingkungan."
+  },
+  "usp": {
+    "heading": "Why Partner with PT. Princess Jaya Abadi?",
+    "items": [
+      {
+        "title": "Premium Packaging",
+        "description": "Kemasan kuat (PP woven/ jumbo bag) menjaga kualitas dan memudahkan transportasi global.",
+        "image": "/6610893f-0f94-485b-81e0-a9f053f7df25.avif"
+      },
+      {
+        "title": "Strict Sorting",
+        "description": "Setiap batch melalui sortasi ukuran serta pemeriksaan kadar air dan impurities untuk hasil seragam.",
+        "image": "/a6b628d7-39d8-48b4-aafc-6620be70a779.avif"
+      },
+      {
+        "title": "Efficient Logistics",
+        "description": "Rantai pasok yang lincah memastikan pengiriman tepat waktu ke berbagai negara.",
+        "image": "/0dfd184a-0970-4af6-8d1c-ba5d05ead0d0.avif"
+      },
+      {
+        "title": "Local Contribution",
+        "description": "Memberdayakan petani dan penggilingan padi lokal melalui praktik pembelian yang adil dan berkelanjutan.",
+        "image": "/Arang-Briket.png"
+      }
+    ]
+  },
+  "exportDestination": {
+    "title": "Global Reach of Our Rice Husk",
+    "regions": "Asia, Europe, America, Middle East, Australia",
+    "paragraph1": "PT. Princess Jaya Abadi melayani klien global dengan pasokan sekam padi dan turunannya. Lokasi strategis di Indonesia—salah satu produsen padi terbesar—memungkinkan suplai yang konsisten.",
+    "paragraph2": "Kami membangun jaringan logistik yang tangguh untuk pengiriman efisien dan tepat waktu ke berbagai destinasi. Jadikan kami mitra tepercaya untuk pasokan sekam padi yang berkelanjutan."
+  },
+  "teamNews": {
+    "news": {
+      "label": "Latest Updates",
+      "heading": "News & Insights on Rice Husk Industry",
+      "description": "Ikuti kabar terbaru, tren pasar, dan pembaruan dari PT. Princess Jaya Abadi serta industri sekam padi global—mulai dari inovasi produk hingga inisiatif keberlanjutan."
+    },
+    "team": {
+      "label": "Our Dedicated Team",
+      "heading": "Tim Ahli di Balik Layanan Kami",
+      "description": "Kenali tim kami yang memastikan setiap tahap—dari sourcing hingga ekspor—memenuhi standar tertinggi."
+    }
+  },
+  "location": {
+    "label": "Find Us Here",
+    "heading": "Head Office & Production Hub",
+    "description": "The head office and production facilities are strategically located in Indonesia, close to quality rice husk sources. Feel free to visit or contact us for more information.",
+    "ctaLabel": "Contact Us",
+    "ctaHref": "/en/#contact"
+  },
+  "cta": {
+    "heading": "Siap Berkolaborasi untuk Kebutuhan Sekam Padi Anda?",
+    "description": "Hubungi PT. Princess Jaya Abadi hari ini. Baik untuk kebutuhan sekam padi mentah, arang sekam, abu sekam, maupun pelet—tim kami siap membantu. Mari membangun masa depan berkelanjutan bersama.",
+    "button": "Contact Us via WhatsApp"
+  },
+  "footer": {
+    "shipping": "Shipping",
+    "shippingDesc": "In-stock items shipped via White Glove or oversize typically ship within 2–3 weeks of purchase unless otherwise noted. Transit can take up to 14 business days.",
+    "delivery": "Delivery",
+    "deliveryDesc": "Delivery requires an appointment and signature. A two-person team will bring the item inside, place it in your chosen room, assemble it, and remove packaging debris.",
+    "returns": "Returns",
+    "returnsDesc": "Please verify that this item aligns with your specific requirements before purchase, as it does not qualify for free returns and incurs a 15% restocking fee.",
+    "social": "Social Media",
+    "support": "Customer Support",
+    "company": "The Company",
+    "subscribe": "Subscribe To Us!",
+    "subscribeDesc": "Sign up to receive export availability, pricing updates, and get 10% off your first order.",
+    "emailPlaceholder": "Your Email Address",
+    "navigation": "Navigation",
+    "navLinks": {
+      "home": "Home",
+      "products": "Products",
+      "articles": "Articles",
+      "contact": "Contact"
+    },
+    "copyright": "All rights reserved."
+  }
+}
