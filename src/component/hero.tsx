@@ -24,7 +24,7 @@ const Hero = forwardRef<HTMLDivElement, HeroProps>(({ dict, lang, images }, ref)
         banner: images?.banner ?? '/hero-banner.avif',
     };
 
-    const ctaLink = `/${lang}/product`;
+    const ctaLink = `/${lang}#product`;
 
     return (
         <section ref={ref} className="relative w-full bg-[#FFFFF2] text-[#1D252A]">
@@ -50,7 +50,7 @@ const Hero = forwardRef<HTMLDivElement, HeroProps>(({ dict, lang, images }, ref)
                             </div>
                             <div className="min-w-0">
                                 <h3 className="font-semibold text-base sm:text-lg">
-                                    Desain Eksklusif X PJA
+                                    Eco Friendly Product & Packaging
                                 </h3>
                                 <p className="mt-1 text-sm opacity-90">{dict.subtitle}</p>
                                 <Link
@@ -70,7 +70,7 @@ const Hero = forwardRef<HTMLDivElement, HeroProps>(({ dict, lang, images }, ref)
 
                         {/* Banner */}
                         <div className="relative">
-                            <span className="absolute left-3 top-3 z-10 text-xs font-medium px-2 py-1 rounded bg-[#BEBDB2] text-[#1D252A]">
+                            <span className="absolute left-3 top-3 z-10 text-xs font-medium px-2 py-1 rounded bg-[#BEBDB2]/10 text-[#1D252A]">
                                 Exclusive
                             </span>
                             <img src={img.banner} alt="Banner" className="w-full h-52 sm:h-64 md:h-full object-cover" />

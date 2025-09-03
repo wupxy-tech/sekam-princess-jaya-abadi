@@ -30,14 +30,10 @@ export default async function Page({
       <Product dict={dict.product} lang={lang} />
 
       <div className="mx-auto">
-        <div className="h-px w-full bg-[#BEBDB2]" />
+        <div className="h-[0.5px] w-full bg-[#BEBDB2]" />
       </div>
 
       <LocationShowcase dict={dict.location} />
-
-      {/* <div className="mx-auto">
-        <div className="h-px w-full bg-[#BEBDB2]" />
-      </div> */}
 
       <Footer dict={dict.footer} lang={lang} />
 

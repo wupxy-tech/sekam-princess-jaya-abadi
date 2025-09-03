@@ -22,9 +22,9 @@ interface NavbarProps {
 }
 
 const navItems = [
-    { key: 'aboutUsLink', href: '/#about-us' },
+    // { key: 'aboutUsLink', href: '/#about-us' },
     { key: 'productsLink', href: '/#product' },
-    { key: 'missionLink', href: '/#mission' },
+    // { key: 'missionLink', href: '/#mission' },
     { key: 'exportDestinationLink', href: '/#export-destination' },
     { key: 'locationLink', href: '/#location' },
     { key: 'contact', href: '/#contact' },
@@ -79,7 +79,7 @@ export default function Navbar({ dict, lang }: NavbarProps) {
 
                     {/* Center: Nav items */}
                     <nav aria-label="Main" className="justify-self-center">
-                        <ul className="flex items-center gap-2 lg:gap-6 text-sm lg:text-base">
+                        <ul className="flex items-center gap-2 lg:gap-6 text-sm lg:text-base font-light">
                             {navItems.map((item) => (
                                 <li key={item.href}>
                                     <Link href={`/${lang}${item.href}`} className={linkCls(item.href)}>
@@ -103,16 +103,7 @@ export default function Navbar({ dict, lang }: NavbarProps) {
                                     d="M2.25 6.75c0-1.243 1.007-2.25 2.25-2.25h2.1c.9 0 1.692.6 1.931 1.47l.63 2.25c.192.69-.108 1.434-.744 1.8l-1.26.72a12.06 12.06 0 005.58 5.58l.72-1.26c.366-.636 1.11-.936 1.8-.744l2.25.63c.87.239 1.47 1.031 1.47 1.931v2.1c0 1.243-1.007 2.25-2.25 2.25H17.25C9.596 21.75 2.25 14.404 2.25 6.75V6.75z" />
                             </svg>
                         </a>
-                        {/* Cart (placeholder) */}
-                        <button
-                            aria-label="Cart"
-                            className="p-2 rounded-md text-[#1D252A] hover:text-[#B7A458] transition"
-                        >
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5"
-                                    d="M2.25 3.75h2.386c.424 0 .8.27.94.669l.548 1.606m0 0L8.25 14.25h8.69a1.5 1.5 0 001.463-1.175l1.348-6.075a.75.75 0 00-.732-.9H6.124m.0 0L5.04 4.419M8.25 20.25a.75.75 0 100-1.5.75.75 0 000 1.5zm8.25 0a.75.75 0 100-1.5.75.75 0 000 1.5z" />
-                            </svg>
-                        </button>
+
                         {/* Lang switch */}
                         <button
                             onClick={toggleLanguage}

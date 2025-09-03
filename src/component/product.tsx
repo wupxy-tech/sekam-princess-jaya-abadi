@@ -8,12 +8,13 @@ import { ArrowRight } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
+/* -------------------- Types -------------------- */
 interface ProductItem {
     title: string;
     description: string;
     badge?: 'Exclusive' | 'New';
+    href?: string; // optional deep link/WA
 }
-
 interface ProductProps {
     dict: {
         label: string;
@@ -21,92 +22,119 @@ interface ProductProps {
         description: string;
         cta: string;
         items: ProductItem[];
-        filters?: string[];
     };
     lang: 'en' | 'id';
 }
 
+/* -------------------- Palette (DRY) -------------------- */
+const COLOR = {
+    bg: '#FFFFF2',
+    text: '#1D252A',
+    primary: '#B7A458',
+    hairline: '#BEBDB2',
+};
+
+/* -------------------- Assets -------------------- */
 const imageSources = [
-    '/product/cube.avif',
-    '/product/cube-hole.avif',
-    '/product/stix.avif',
-    '/product/hexagon.avif',
-    '/product/octagon.avif',
-    '/product/cube.avif',
-    '/product/cube-hole.avif',
-    '/product/stix.avif',
+    '/sekam-padi-mentah.png',
+    '/arang-sekam.avif',
+    '/abu-sekam.png',
 ];
 
+/* -------------------- Helpers -------------------- */
+const isSekamBakar = (title?: string, src?: string) => {
+    const t = (title ?? '').toLowerCase();
+    const s = (src ?? '').toLowerCase();
+    return t.includes('arang') || t.includes('bakar') || s.includes('arang');
+};
+
+const badgeEl = (badge?: 'Exclusive' | 'New') =>
+    badge ? (
+        <span
+            className={`absolute left-3 top-3 z-20 rounded-sm px-2 py-1 text-[10px] font-semibold tracking-wide
+      ${badge === 'Exclusive' ? 'bg-[#BEBDB2] text-[#1D252A]' : 'bg-[#B7A458] text-[#FFFFF2]'}`}
+        >
+            {badge}
+        </span>
+    ) : null;
+
+/* -------------------- Component -------------------- */
 const Product = forwardRef<HTMLDivElement, ProductProps>(({ dict, lang }, ref) => {
     const headerRef = useRef<HTMLDivElement>(null);
     const gridMdUpRef = useRef<HTMLDivElement>(null);
     const gridMobileRef = useRef<HTMLDivElement>(null);
 
-    const {
-        label,
-        heading,
-        description,
-        cta,
-        items,
-    } = dict;
+    const { label, heading, description, cta, items } = dict;
+    const orderText = lang === 'id' ? 'Pesan Sekarang' : 'Order Now';
 
-    useEffect(() => {
-        const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-        if (headerRef.current) {
-            tl.from(headerRef.current.children, { opacity: 0, y: 24, stagger: 0.08, duration: 0.7 });
-        }
-        const animateGrid = (el?: HTMLDivElement | null) => {
-            if (!el) return;
-            gsap.from(el.children, {
-                opacity: 0,
-                y: 30,
-                stagger: 0.12,
-                duration: 0.8,
-                ease: 'power3.out',
-                scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' },
-            });
-        };
-        animateGrid(gridMobileRef.current);
-        animateGrid(gridMdUpRef.current);
-    }, []);
+    // single reusable card (DRY)
+    const Card = ({
+        idx,
+        product,
+        tall = false,
+    }: {
+        idx: number;
+        product: ProductItem;
+        tall?: boolean;
+    }) => {
+        const imgSrc = imageSources[idx % imageSources.length];
+        const smallerScale = isSekamBakar(product.title, imgSrc);
+        const hoverScaleClass = smallerScale ? 'group-hover:scale-[0.8]' : 'group-hover:scale-[1.03]';
+        const href =
+            product.href ??
+            `https://wa.me/62817801588?text=${encodeURIComponent(
+                (lang === 'id' ? 'Halo, saya ingin memesan ' : 'Hello, I want to order ') + product.title
+            )}`;
 
-    // peta area desktop + CTA
-    const areas = [
-        'item1 item2 item3',
-        'item4 item5 item5',
-        // 'item6 item7 item8',
-        'cta cta cta',
-    ];
-
-    const renderBadge = (badge?: 'Exclusive' | 'New') =>
-        badge ? (
-            <span
-                className={`absolute left-3 top-3 z-20 rounded-sm px-2 py-1 text-[10px] font-semibold tracking-wide
-        ${badge === 'Exclusive'
-                        ? 'bg-[#BEBDB2] text-[#1D252A]'
-                        : 'bg-[#B7A458] text-[#FFFFF2]'
+        return (
+            <figure
+                className={`group relative overflow-hidden rounded-md border border-[${COLOR.hairline}] ${tall ? 'row-span-2' : ''
                     }`}
             >
-                {badge}
-            </span>
-        ) : null;
+                {badgeEl(product.badge)}
+
+                {/* Image */}
+                <img
+                    src={imgSrc}
+                    alt={product.title}
+                    className={`w-full object-cover transition-all duration-500 ${hoverScaleClass} group-hover:blur-[2px] ${tall ? 'h-full md:h-full' : 'h-full'
+                        } ${idx === 1 && 'scale-75'}`}
+                />
+
+                {/* Hover overlay CTA */}
+                <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    <Link
+                        href={href}
+                        className="pointer-events-auto rounded-full border border-[#BEBDB2] bg-[#FFFFF2]/90 px-5 py-2 text-sm font-semibold text-[#1D252A] backdrop-blur hover:bg-[#B7A458] hover:text-[#FFFFF2] transition"
+                    >
+                        {orderText}
+                    </Link>
+                </div>
+
+                {/* Always-on caption */}
+                <figcaption className="absolute inset-x-0 bottom-0 z-10">
+                    <div className="m-3 rounded-md/90 px-3 py-2">
+                        <h3 className="text-sm font-semibold text-[#1D252A]">{product.title}</h3>
+                        <p className="mt-0.5 text-xs text-[#1D252A]/70">{product.description}</p>
+                    </div>
+                </figcaption>
+            </figure>
+        );
+    };
 
     return (
-        <section ref={ref} id="product" className="relative bg-[#FFFFF2] py-12">
-            {/* header: kiri judul jumbo, kanan filter/desc */}
+        <section id="product" className={`relative bg-[${COLOR.bg}] py-12`}>
+            {/* Header */}
             <div
                 ref={headerRef}
                 className="mx-auto grid grid-cols-1 gap-6 px-4 sm:px-6 md:grid-cols-5 md:items-end"
             >
                 <div className="md:col-span-3">
                     <p className="text-xs uppercase tracking-[0.2em] text-[#1D252A]/60">{label}</p>
-                    <h2
-                        className="mt-1 font-extrabold leading-22 text-[#1D252A]
-                         text-[56px] sm:text-[72px] md:text-[96px] lg:text-[112px]"
-                    >
+                    <h2 className="mt-1 font-extrabold text-[#1D252A] text-[56px] sm:text-[72px] md:text-[96px] lg:text-[112px] leading-[0.9]">
                         {heading}
                     </h2>
-                    <div className="mt-10 h-[0.5px] w-full bg-[#BEBDB2]" />
+                    <div className={`mt-10 h-[0.5px] w-full bg-[${COLOR.hairline}]`} />
                 </div>
 
                 <div className="md:col-span-2 md:pl-6">
@@ -114,76 +142,38 @@ const Product = forwardRef<HTMLDivElement, ProductProps>(({ dict, lang }, ref) =
                 </div>
             </div>
 
-            {/* GRID MOBILE (2 kolom) */}
-            <div
-                ref={gridMobileRef}
-                className="mx-auto mt-8 grid grid-cols-1 gap-4 px-4 sm:grid-cols-2 md:hidden"
-            >
+            {/* Mobile grid */}
+            <div ref={gridMobileRef} className="mx-auto mt-8 grid grid-cols-1 gap-4 px-4 sm:grid-cols-2 md:hidden">
                 {items.map((product, idx) => (
-                    <figure
-                        key={idx}
-                        className="relative overflow-hidden rounded-md border border-[#BEBDB2] bg-white"
-                    >
-                        {renderBadge(product.badge)}
-                        <img
-                            src={imageSources[idx % imageSources.length]}
-                            alt={product.title}
-                            className="h-60 w-full object-cover transition-transform duration-500 hover:scale-[1.03]"
-                        />
-                        <figcaption className="p-4">
-                            <h3 className="text-sm font-semibold text-[#1D252A]">{product.title}</h3>
-                            <p className="mt-1 text-xs text-[#1D252A]/70">{product.description}</p>
-                        </figcaption>
-                    </figure>
+                    <Card key={idx} idx={idx} product={product} />
                 ))}
             </div>
 
-            {/* GRID ≥ md (3 kolom + CTA di grid-area terakhir) */}
+            {/* Desktop grid: kiri besar, kanan 2 kecil */}
             <div
                 ref={gridMdUpRef}
-                className="mx-auto hidden grid-cols-3 gap-5 px-4 sm:px-6 md:mt-8 md:grid"
+                className="mx-auto hidden grid-cols-2 gap-5 px-4 sm:px-6 md:mt-10 md:grid"
                 style={{
                     display: 'grid',
-                    gridTemplateAreas: areas.map((r) => `"${r}"`).join(' '),
-                    gridTemplateColumns: '1fr 1fr 1fr',
-                    gridAutoRows: 'minmax(240px, auto)',
+                    gridTemplateColumns: '2fr 1fr',
+                    gridTemplateRows: 'repeat(2, minmax(220px, auto))',
+                    gap: '20px',
                 }}
             >
-                {items.slice(0, 8).map((product, idx) => {
-                    const area = `item${idx + 1}`;
-                    const isWide = area === 'item5';
-                    return (
-                        <figure
-                            key={idx}
-                            style={{ gridArea: area }}
-                            className="relative overflow-hidden border border-[#BEBDB2] bg-transparent"
-                        >
-                            {renderBadge(product.badge)}
-                            <img
-                                src={imageSources[idx % imageSources.length]}
-                                alt={product.title}
-                                className={`w-full object-cover transition-transform duration-500 hover:scale-[1.02]
-                  ${isWide ? 'h-[300px] md:h-[500px]' : 'h-[240px] md:h-[260px]'}`}
-                            />
-                            <figcaption className="sr-only">
-                                <h3>{product.title}</h3>
-                                <p>{product.description}</p>
-                            </figcaption>
-                        </figure>
-                    );
-                })}
+                {items[0] && <Card idx={0} product={items[0]} tall />}
+                {items[1] && <Card idx={1} product={items[1]} />}
+                {items[2] && <Card idx={2} product={items[2]} />}
+            </div>
 
-                {/* CTA di dalam grid */}
-                <div style={{ gridArea: 'cta' }} className="pt-6 text-center">
-                    <Link
-                        href={`/${lang}/product#products`}
-                        className="group inline-flex items-center gap-2 rounded-full border border-[#BEBDB2] px-6 py-3 font-semibold text-[#1D252A]
-                     transition hover:bg-[#B7A458] hover:text-[#FFFFF2]"
-                    >
-                        {cta}
-                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-                    </Link>
-                </div>
+            {/* CTA bottom */}
+            <div className="mt-10 text-center">
+                <Link
+                    href={`/${lang}/product`}
+                    className="group inline-flex items-center gap-2 rounded-full border border-[#BEBDB2] px-6 py-3 font-semibold text-[#1D252A] transition hover:bg-[#B7A458] hover:text-[#FFFFF2]"
+                >
+                    {cta}
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                </Link>
             </div>
         </section>
     );

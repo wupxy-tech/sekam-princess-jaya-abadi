@@ -83,9 +83,13 @@ const LocationShowcase = forwardRef<HTMLDivElement, LocationShowcaseProps>(
                             </div>
 
                             {/* Gambar kecil di kanan bawah */}
-                            <div className="mt-6">
+                            <div className="mt-6" id='export-destination'>
                                 <p className="uppercase tracking-wide text-xs text-[#6E6B5E] font-semibold">
                                     Our Export Destionation
+                                </p>
+                                <br />
+                                <p>
+                                    Asia, Europe, America, Middle East, Australia
                                 </p>
                                 <div className="overflow-hidden border border-[#D6D4C8] mt-2">
                                     <img

@@ -1,158 +1,81 @@
 'use client';
 
 import Link from 'next/link';
-import {
-    Package,        // Shipping
-    Truck,          // Delivery
-    RotateCcw,      // Returns
-} from 'lucide-react';
 
-interface FooterProps {
+interface SimpleFooterProps {
     dict: {
-        shipping: string;
-        shippingDesc: string;
-        delivery: string;
-        deliveryDesc: string;
-        returns: string;
-        returnsDesc: string;
-        social: string;
-        support: string;
-        company: string;
-        subscribe: string;
-        subscribeDesc: string;
-        emailPlaceholder: string;
-        copyright: string;
-        navLinks: {
-            home: string;
-            products: string;
-            articles: string;
-            contact: string;
-        };
+        headline: string;        // tulisan besar di kanan
+        company: string;         // nama PT
+        email: string;           // email kontak
+        phone: string;           // nomor telepon/WA (boleh dengan +62 / 0)
+        note?: string;           // optional subtext kiri (mis. jam operasional)
     };
     lang: 'en' | 'id';
 }
 
-export default function Footer({ dict, lang }: FooterProps) {
-    const year = new Date().getFullYear();
+function buildWaLink(phone: string, lang: 'en' | 'id') {
+    let digits = (phone || '').replace(/\D/g, '');
+    if (digits.startsWith('0')) digits = '62' + digits.slice(1);
+    if (digits.startsWith('620')) digits = '62' + digits.slice(2); // normalisasi 6208...
+    const msg =
+        lang === 'id'
+            ? 'Halo, saya tertarik dengan produk Anda.'
+            : 'Hello, I am interested in your products.';
+    return `https://wa.me/${digits}?text=${encodeURIComponent(msg)}`;
+}
 
-    const Line = ({ className = '' }: { className?: string }) => (
-        <div className={`h-px w-full bg-white/15 ${className}`} />
-    );
-
-    const IconWrap = ({ children }: { children: React.ReactNode }) => (
-        <div className="mb-3 text-white/90">
-            {/* ukuran besar + garis tipis */}
-            <div className="inline-flex items-center justify-center">
-                <div className="[&>*]:h-9 [&>*]:w-9 md:[&>*]:h-10 md:[&>*]:w-10 [&>*]:stroke-[1.25]" >
-                    {children}
-                </div>
-            </div>
-        </div>
-    );
+export default function SimpleContactFooter({ dict, lang }: SimpleFooterProps) {
+    const waHref = buildWaLink(dict.phone, lang);
+    const ctaText = lang === 'id' ? 'Chat via WhatsApp' : 'Chat via WhatsApp';
 
     return (
-        <footer className="bg-[#1D252A] text-white" id="contact">
-            {/* Garis frame atas */}
-            <Line />
+        <section id="contact" className="relative w-full bg-[#FFFFF2] text-[#1D252A] border-t border-[#BEBDB2]">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 py-10 md:py-14">
+                {/* GRID: kiri info + tombol, kanan headline besar */}
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
+                    {/* KIRI */}
+                    <div className="md:col-span-5">
+                        <div className="border border-[#BEBDB2] p-5 sm:p-6">
+                            <h3 className="text-base sm:text-lg font-semibold">{dict.company}</h3>
 
-            {/* Top Info (3 kolom) */}
-            <div className="grid grid-cols-1 md:grid-cols-3">
-                <div className="p-6 border-b md:border-b-0 md:border-r border-white/15">
-                    <IconWrap>
-                        <Package />
-                    </IconWrap>
-                    <h4 className="font-semibold mb-1">{dict.shipping}</h4>
-                    <p className="text-sm text-white/80">{dict.shippingDesc}</p>
-                </div>
+                            <div className="mt-2 text-sm">
+                                <p className="text-[#1D252A]/80">
+                                    <span className="font-medium">Email:</span>{' '}
+                                    <a href={`mailto:${dict.email}`} className="underline hover:text-[#B7A458]">
+                                        {dict.email}
+                                    </a>
+                                </p>
+                                <p className="text-[#1D252A]/80 mt-1">
+                                    <span className="font-medium">Phone/WA:</span>{' '}
+                                    <a href={`tel:${dict.phone.replace(/\D/g, '')}`} className="underline hover:text-[#B7A458]">
+                                        {dict.phone}
+                                    </a>
+                                </p>
+                                {dict.note && <p className="mt-2 text-xs text-[#1D252A]/60">{dict.note}</p>}
+                            </div>
 
-                <div className="p-6 border-b md:border-b-0 md:border-r border-white/15">
-                    <IconWrap>
-                        <Truck />
-                    </IconWrap>
-                    <h4 className="font-semibold mb-1">{dict.delivery}</h4>
-                    <p className="text-sm text-white/80">{dict.deliveryDesc}</p>
-                </div>
+                            <a
+                                href={waHref}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="mt-5 inline-flex items-center justify-center rounded-full border border-[#BEBDB2] bg-[#FFFFF2] px-5 py-3 font-semibold hover:bg-[#B7A458] hover:text-[#FFFFF2] transition"
+                            >
+                                {ctaText} ↗
+                            </a>
+                        </div>
+                    </div>
 
-                <div className="p-6">
-                    <IconWrap>
-                        <RotateCcw />
-                    </IconWrap>
-                    <h4 className="font-semibold mb-1">{dict.returns}</h4>
-                    <p className="text-sm text-white/80">{dict.returnsDesc}</p>
-                </div>
-            </div>
-
-            {/* Garis pemisah besar */}
-            <Line />
-
-            {/* Bottom Grid (4 kolom) */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 px-6 lg:px-12 py-10">
-                {/* Social */}
-                <div className="border-t lg:border-t-0 lg:border-r border-white/15 pt-6 lg:pt-0 lg:pr-8">
-                    <h5 className="text-sm font-semibold mb-3">{dict.social}</h5>
-                    <ul className="space-y-2 text-sm text-white/80">
-                        <li><a href="#" className="hover:text-white">Facebook</a></li>
-                        <li><a href="#" className="hover:text-white">Instagram</a></li>
-                        <li><a href="#" className="hover:text-white">Pinterest</a></li>
-                        <li><a href="#" className="hover:text-white">Tiktok</a></li>
-                    </ul>
-                </div>
-
-                {/* Support */}
-                <div className="border-t lg:border-t-0 lg:border-r border-white/15 pt-6 lg:pt-0 lg:px-8">
-                    <h5 className="text-sm font-semibold mb-3">{dict.support}</h5>
-                    <ul className="space-y-2 text-sm text-white/80">
-                        <li><a href="#" className="hover:text-white">Top Questions</a></li>
-                        <li><a href="#" className="hover:text-white">Start a Return</a></li>
-                        <li><Link href={`/${lang}/articles`} className="hover:text-white">Articles</Link></li>
-                    </ul>
-                </div>
-
-                {/* Company */}
-                <div className="border-t lg:border-t-0 lg:border-r border-white/15 pt-6 lg:pt-0 lg:px-8">
-                    <h5 className="text-sm font-semibold mb-3">{dict.company}</h5>
-                    <ul className="space-y-2 text-sm text-white/80">
-                        <li><a href="#" className="hover:text-white">About Us</a></li>
-                        <li><a href="#" className="hover:text-white">Customer Reviews</a></li>
-                        <li><Link href={`/${lang}/`} className="hover:text-white">{dict.navLinks.home}</Link></li>
-                        <li><Link href={`/${lang}/product`} className="hover:text-white">{dict.navLinks.products}</Link></li>
-                    </ul>
-                </div>
-
-                {/* Subscribe */}
-                <div className="border-t lg:border-t-0 border-white/15 pt-6 lg:pt-0 lg:pl-8">
-                    <h5 className="text-sm font-semibold mb-3">{dict.subscribe}</h5>
-                    <p className="text-sm text-white/80 mb-3">{dict.subscribeDesc}</p>
-
-                    <form
-                        className="flex items-center border-b border-white/40 focus-within:border-white transition"
-                        onSubmit={(e) => e.preventDefault()}
-                    >
-                        <input
-                            type="email"
-                            placeholder={dict.emailPlaceholder}
-                            className="bg-transparent flex-1 px-2 py-2 text-sm placeholder-white/50 focus:outline-none"
-                            aria-label="Email"
-                        />
-                        <button
-                            type="submit"
-                            className="px-2 font-bold tracking-wide transition-transform hover:translate-x-1"
-                            aria-label="Submit email"
-                            title="Submit"
+                    {/* KANAN: headline besar ala hero */}
+                    <div className="md:col-span-7 md:border-l md:border-[#BEBDB2] md:pl-8">
+                        <h2
+                            className="leading-none tracking-tight font-extrabold text-[14vw] sm:text-[10vw] md:text-[8vw] lg:text-[6.5vw] select-none"
+                            style={{ letterSpacing: '-0.02em' }}
                         >
-                            ↗
-                        </button>
-                    </form>
+                            {dict.headline}
+                        </h2>
+                    </div>
                 </div>
             </div>
-
-            {/* Garis frame bawah */}
-            <Line />
-
-            {/* Copyright */}
-            <div className="py-6 text-center text-xs text-white/60">
-                © {year} PT. Princess Jaya Abadi. {dict.copyright}
-            </div>
-        </footer>
+        </section>
     );
 }
