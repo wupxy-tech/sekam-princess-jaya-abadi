@@ -175,7 +175,7 @@ const Product = forwardRef<HTMLDivElement, ProductProps>(({ dict, lang }, ref) =
             {/* CTA bottom */}
             <div className="mt-10 text-center">
                 <Link
-                    href={`/${lang}/product`}
+                    href={`/${lang}#contact`}
                     className="group inline-flex items-center gap-2 rounded-full border border-secondary px-6 py-3 font-semibold text-foreground transition hover:bg-primary hover:text-background"
                 >
                     {cta}
