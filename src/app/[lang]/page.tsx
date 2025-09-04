@@ -22,7 +22,7 @@ export default async function Page({
   const dict = await getDictionary(lang)
 
   return (
-    <main className="font-sans bg-[#FFFFF2] text-[#1D252A] relative">
+    <main className="font-sans bg-background text-foreground relative">
       <Navbar lang={lang} dict={dict.navbar} />
 
       <Hero lang={lang} dict={dict.hero} />
@@ -30,7 +30,7 @@ export default async function Page({
       <Product dict={dict.product} lang={lang} />
 
       <div className="mx-auto">
-        <div className="h-[0.5px] w-full bg-[#BEBDB2]" />
+        <div className="h-[0.5px] w-full bg-secondary" />
       </div>
 
       <LocationShowcase dict={dict.location} />

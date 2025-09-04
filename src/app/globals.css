@@ -5,10 +5,10 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --primary: oklch(0.705 0.213 47.604);
-  --secondary: #171717;
+  --background: #fffff2;
+  --foreground: #1d252a;
+  --primary: #b7a458;
+  --secondary: #bebdb2;
 }
 
 @theme inline {
@@ -20,13 +20,6 @@
 
   --color-primary: var(--primary);
   --color-secondary: var(--secondary);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {

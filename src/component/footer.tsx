@@ -4,11 +4,11 @@ import Link from 'next/link';
 
 interface SimpleFooterProps {
     dict: {
-        headline: string;        // tulisan besar di kanan
-        company: string;         // nama PT
-        email: string;           // email kontak
-        phone: string;           // nomor telepon/WA (boleh dengan +62 / 0)
-        note?: string;           // optional subtext kiri (mis. jam operasional)
+        headline: string;
+        company: string;
+        email: string;
+        phone: string;
+        note?: string;
     };
     lang: 'en' | 'id';
 }
@@ -16,7 +16,7 @@ interface SimpleFooterProps {
 function buildWaLink(phone: string, lang: 'en' | 'id') {
     let digits = (phone || '').replace(/\D/g, '');
     if (digits.startsWith('0')) digits = '62' + digits.slice(1);
-    if (digits.startsWith('620')) digits = '62' + digits.slice(2); // normalisasi 6208...
+    if (digits.startsWith('620')) digits = '62' + digits.slice(2);
     const msg =
         lang === 'id'
             ? 'Halo, saya tertarik dengan produk Anda.'
@@ -29,44 +29,54 @@ export default function SimpleContactFooter({ dict, lang }: SimpleFooterProps) {
     const ctaText = lang === 'id' ? 'Chat via WhatsApp' : 'Chat via WhatsApp';
 
     return (
-        <section id="contact" className="relative w-full bg-[#FFFFF2] text-[#1D252A] border-t border-[#BEBDB2]">
+        <section
+            id="contact"
+            className="relative w-full bg-background text-foreground border-t border-secondary"
+        >
             <div className="mx-auto max-w-7xl px-4 sm:px-6 py-10 md:py-14">
-                {/* GRID: kiri info + tombol, kanan headline besar */}
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
-                    {/* KIRI */}
+                    {/* Kiri: info */}
                     <div className="md:col-span-5">
-                        <div className="border border-[#BEBDB2] p-5 sm:p-6">
+                        <div className="border border-secondary p-5 sm:p-6">
                             <h3 className="text-base sm:text-lg font-semibold">{dict.company}</h3>
 
                             <div className="mt-2 text-sm">
-                                <p className="text-[#1D252A]/80">
+                                <p className="text-foreground/80">
                                     <span className="font-medium">Email:</span>{' '}
-                                    <a href={`mailto:${dict.email}`} className="underline hover:text-[#B7A458]">
+                                    <a
+                                        href={`mailto:${dict.email}`}
+                                        className="underline hover:text-primary"
+                                    >
                                         {dict.email}
                                     </a>
                                 </p>
-                                <p className="text-[#1D252A]/80 mt-1">
+                                <p className="text-foreground/80 mt-1">
                                     <span className="font-medium">Phone/WA:</span>{' '}
-                                    <a href={`tel:${dict.phone.replace(/\D/g, '')}`} className="underline hover:text-[#B7A458]">
+                                    <a
+                                        href={`tel:${dict.phone.replace(/\D/g, '')}`}
+                                        className="underline hover:text-primary"
+                                    >
                                         {dict.phone}
                                     </a>
                                 </p>
-                                {dict.note && <p className="mt-2 text-xs text-[#1D252A]/60">{dict.note}</p>}
+                                {dict.note && (
+                                    <p className="mt-2 text-xs text-foreground/60">{dict.note}</p>
+                                )}
                             </div>
 
                             <a
                                 href={waHref}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="mt-5 inline-flex items-center justify-center rounded-full border border-[#BEBDB2] bg-[#FFFFF2] px-5 py-3 font-semibold hover:bg-[#B7A458] hover:text-[#FFFFF2] transition"
+                                className="mt-5 inline-flex items-center justify-center rounded-full border border-secondary bg-background px-5 py-3 font-semibold hover:bg-primary hover:text-background transition"
                             >
                                 {ctaText} ↗
                             </a>
                         </div>
                     </div>
 
-                    {/* KANAN: headline besar ala hero */}
-                    <div className="md:col-span-7 md:border-l md:border-[#BEBDB2] md:pl-8">
+                    {/* Kanan: headline */}
+                    <div className="md:col-span-7 md:border-l md:border-secondary md:pl-8">
                         <h2
                             className="leading-none tracking-tight font-extrabold text-[14vw] sm:text-[10vw] md:text-[8vw] lg:text-[6.5vw] select-none"
                             style={{ letterSpacing: '-0.02em' }}
